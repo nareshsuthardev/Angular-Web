@@ -1,0 +1,19 @@
+<div class="container">
+    <app-loader *ngIf="loading"></app-loader>
+    <div class="row">
+
+        <div class="card col-4 me-5 mb-5" style="width: 18rem;" *ngFor="let prdod of myProducts; let i=index">
+            <img src="" class="card-img-top" height="200px" width="100%" [src]="prdod.image">
+            <div class="card-body">
+                <h5 class="card-title">{{prdod.title}}<span class="badge badge-secondary">{{prdod.category}}</span></h5>
+                <p class="card-text product-description">{{prdod.description}}...</p>
+                <div>Price:-{{prdod.price}}</div>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <button class="btn btn-light col" (click)="goToEmployee()">go to Employee</button>
+        <button class="btn btn-light col" (click)="goToHome()">go to Home</button>
+    </div>
+</div>

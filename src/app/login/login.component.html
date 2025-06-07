@@ -1,0 +1,55 @@
+<form class="p-5 bg-light mb-5" [class.border.border-danger]="loginForm.valid" [formGroup]="loginForm">
+    <p class="alert alert-primary">
+        {{email!.errors | json}}
+
+
+    </p>
+    <div class="form-group mb-3">
+        <label for="email" class="pb-2">Email address</label>
+        <input type="email" class="form-control" id="email"
+            [class.is-invalid]="!email!.valid && (email!.dirty ||email!.touched)" formControlName="email">
+        <div class="alert alert-danger py-1" *ngIf="!email!.valid && (email!.dirty ||email!.touched)">
+            <!-- {{email!.errors == null ? 's' : email!.errors['requiredValue']   }} -->
+            <small class="form-text  text-danger d-block" *ngIf="email!.errors!['emailValidator']">Atleast
+                {{email!.errors!['requiredValue']}} char req.</small>
+            <small class="form-text text-danger d-block"
+                *ngIf="!email!.errors!['patternValidator']">{{email!.errors!['pattern']}} Start with Alphabet.</small>
+        </div>
+        <p>{{email!.errors | json}}</p>
+    </div>
+    <!-- <button type="button" class="btn btn-sm my-3 btn-primary " (click)="addEmailField()">Add Alt emial</button> -->
+    <div class="input-group mb-3" formArrayName="newEmails" *ngFor="let eml of newEmails.controls; let i=index">
+        <input type="text" class="form-control" placeholder="Recipient's username" [formControlName]="i">
+        <button class="btn btn-outline-secondary" type="button" *ngIf="i>=1" (click)="removeEmail(i)">X</button>
+        <button class="btn btn-outline-secondary" type="button" *ngIf="i==0" (click)="addEmailField()">+</button>
+    </div>
+
+    <div class="form-group pb-2">
+        <label for="pass" class="pb-2">Password</label>
+        <input type="password" class="form-control pb-2" id="pass"
+            [class.is-invalid]="!password!.valid && (password!.dirty ||password!.touched)" formControlName="password">
+    </div>
+    <p>isDirty:- {{password!.dirty}} isTouched:- {{password!.touched}} pristine:- {{password!.pristine}}</p>
+    <div class="form-group pb-2">
+        <label for="cfPassword" class="pb-2">CF Password</label>
+        <input type="password" class="form-control pb-2" id="cfPassword" formControlName="cfPassword"
+            [class.is-invalid]="!cfPassword!.valid && (cfPassword!.dirty ||cfPassword!.touched)">
+        <!-- <div class="alert alert-danger py-1" *ngIf="cfPassword!.valid && (cfPassword!.dirty ||cfPassword!.touched)">
+            <small class="form-text  text-danger d-block" *ngIf="cfPassword!.valid && (cfPassword!.dirty ||cfPassword!.touched)">
+                {{loginForm!.errors!['ERRORmESSAGE']}} </small>
+        </div> -->
+    </div>
+    <!-- <P>{{loginForm!.errors!['ERRORmESSAGE']}}  {{cfPassword!.valid}} {{loginForm!.errors!['mismatch']}}</P> -->
+    <p>{{loginForm!.errors |json }}</p>
+    <div class="form-group form-check pb-2">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="button" class="btn btn-primary w-100 my-3" (click)="login()"
+        >Login</button>
+        <!-- [disabled]="!loginForm.valid" -->
+    <button type="button" class="btn btn-warning w-100 my-3" (click)="setvalueToFormArray()">set Vlaue naresh at index
+        1</button>
+    <button type="button" class="btn btn-dark w-100 my-3" (click)="resetForm()">Reset form</button>
+    <div class="alert alert-warning py-5"> {{loginForm.value | json}} </div>
+</form>

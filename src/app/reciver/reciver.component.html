@@ -1,0 +1,22 @@
+<div class="container p-3 alert alert-success">
+    <!-- <select class="btn" (change)="setChnage(reciver.value,sender.value)" #sender>
+        <option *ngFor="let emp of employees" [value]="emp.id"
+            [ngStyle]="{'background-color': (receiverId == emp.id) ? 'red' : '' }">
+            <a class="dropdown-item">
+                {{emp.firstName}}
+                {{emp.lastName}}
+            </a>
+        </option>
+    </select> -->
+    <div class="input-group mb-3 ">
+
+        <input type="text" class="form-control" name="userName" #message>
+        <button class="btn btn-outline-secondary" type="button" (click)="sendMessage(message.value)">send</button>
+    </div>
+    <h1>First User</h1>
+    <p *ngFor="let msg of messagesSecond">{{msg}}</p>
+    <h1>Second User</h1>
+    <p *ngFor="let msg1 of messages">{{msg1}}</p>
+
+    <button type="button" (click)="setload()">load fits</button>
+</div> 

@@ -1,0 +1,19 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Admin</h5>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'User'" routerLinkActive="active"> User load </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'Profile'" routerLinkActive="active"> Profile load </a>
+            </li>
+
+            
+        </ul>
+        <p class="card-text">
+            <router-outlet></router-outlet>
+        </p>
+    </div>
+</div>

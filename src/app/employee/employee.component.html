@@ -1,0 +1,64 @@
+<!-- <h1 app-loader class="gggg" #ggg>dsfdf</h1> -->
+<button class="btn btn-light " type="button" (click)="subscribe()">subscribe</button>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="input-group mb-3 ">
+                <button class="btn btn-outline-secondary" type="button">Show
+                    <!-- (click)="showEmployee = !showEmployee" -->
+                    Employees</button>
+                <input type="text" class="form-control" name="userName" #usernameInpt>
+                <button class="btn btn-outline-secondary" type="button">Add</button>
+                <!-- (click)="AddEmployee(usernameInpt.value)" -->
+            </div>
+            <!-- <table class="table" *ngIf="showEmployee"> -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">userName</th>
+                        <th scope="col">fullname</th>
+                        <th scope="col">jobTitleName</th>
+                        <th scope="col">employeeCode</th>
+                        <th scope="col">emailAddress</th>
+                        <th scope="col">region</th>
+                        <th>phoneNumber</th>
+                        <th scope="col">date</th>
+                        <th scope="col">operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let emp of empl_list; let i=index">
+
+                 
+                    <tr 
+                        [routerLink]="['/Employee/employee-deatil',emp.id,emp.userId]"
+                        >
+                        <!-- <tr *ngFor="let emp of empl_list; let i=index" [routerLink]="'employee-deatil'"
+                        [queryParams]="{'id':emp.id,'name':emp.userId}"> -->
+                        <td>{{i | currency:'INR':'symbol':'2.2-5'}}</td>
+                        <td>
+                            <img src="https://www.reachfirst.com/wp-content/uploads/2018/08/Web-Development.jpg"
+                                style="height: 30px;width: 30px;border-radius: 100%;">
+                        </td>
+                        <td>{{emp.userId | uppercase}}</td>
+                        <td>{{emp.firstName }} {{emp.lastName}}</td>
+                        <td>{{emp.jobTitleName | lowercase}}</td>
+                        <td>{{emp.employeeCode}}</td>
+                        <td>{{emp.emailAddress}}</td>
+                        <td>{{emp.region}}</td>
+                        <td>{{emp.phoneNumber}}</td>
+                        <td>{{today | date : 'MMM Y'}}</td>
+                        <!-- <td><button class="btn btn-light " type="button" (click)="delete(i)">Remove</button></td> -->
+                        <td><button class="btn btn-light " type="button">Remove/Edit</button></td>
+                    </tr>
+                </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- <app-employee-deatil [empl_list]="emp_dets"></app-employee-deatil> -->
+</div>
+
+<router-outlet></router-outlet>
